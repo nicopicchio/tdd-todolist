@@ -29,7 +29,6 @@ class TodoList {
                 output.push(this.todoList[i])
             }
         }
-
         return output
     }
 
@@ -43,23 +42,6 @@ class TodoList {
         return output
     }
 
-
-    // searchAndReturn(id) {
-    //     for (element of this.todoList) {
-    //         if (element.id === id) {
-    //             return element.text
-    //         }
-    //     }
-    //     return 'The item does not exist.'
-    // }
-
-    // removeItem(id) {
-    //     for (element of this.todoList) {
-    //         if (element.id === id) {
-    //             todoList.splice(element.id, 1)
-    //         }
-    //     }
-    // }
 }
 
 module.exports = TodoList
