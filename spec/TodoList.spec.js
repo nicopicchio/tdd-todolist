@@ -1,5 +1,11 @@
 const TodoList = require("../src/TodoList.js")
 
+// const currentDate = new Date().substring(0, 15)
+
+const daysOfTheWeek = {
+  
+}
+
 describe("TodoList", () => {
   let todoList
 
@@ -11,7 +17,8 @@ describe("TodoList", () => {
     const expected = {
       id: 1,
       text: "turn the heating on!",
-      status: "incomplete"
+      status: "incomplete",
+      creation: Date().substring(0, 15)
     }
     const result = todoList.createItem("turn the heating on!")
     expect(result).toEqual(expected)
@@ -21,12 +28,14 @@ describe("TodoList", () => {
     const expected = [{
         id: 1,
         text: "turn the heating on!",
-        status: "incomplete"
+        status: "incomplete",
+        creation: Date().substring(0, 15)
       },
       {
         id: 2,
         text: "meal prep",
-        status: "incomplete"
+        status: "incomplete",
+        creation: Date().substring(0, 15)
       }
     ]
     todoList.createItem('turn the heating on!')
@@ -39,12 +48,14 @@ describe("TodoList", () => {
     const expected = [{
         id: 1,
         text: "turn the heating on!",
-        status: "complete"
+        status: "complete",
+        creation: Date().substring(0, 15)
       },
       {
         id: 2,
         text: "meal prep",
-        status: "incomplete"
+        status: "incomplete",
+        creation: Date().substring(0, 15)
       }
     ]
     todoList.createItem('turn the heating on!')
@@ -57,12 +68,14 @@ describe("TodoList", () => {
     const expected = [{
         id: 1,
         text: "meal prep",
-        status: "incomplete"
+        status: "incomplete",
+        creation: Date().substring(0, 15)
       },
       {
         id: 2,
         text: "play piano",
-        status: "incomplete"
+        status: "incomplete",
+        creation: Date().substring(0, 15)
       }
     ]
     todoList.createItem('meal prep')
@@ -77,7 +90,8 @@ describe("TodoList", () => {
     const expected = [{
       id: 3,
       text: "code",
-      status: "complete"
+      status: "complete",
+      creation: Date().substring(0, 15)
     }]
     todoList.createItem('meal prep')
     todoList.createItem('play piano')
@@ -91,7 +105,8 @@ describe("TodoList", () => {
     const expected = {
       id: 1,
       text: "drink more water",
-      status: "incomplete"
+      status: "incomplete",
+      creation: Date().substring(0, 15)
     }
     todoList.createItem('drink more water')
     const result = todoList.searchAndReturnByID(1)
@@ -110,12 +125,14 @@ describe("TodoList", () => {
       {
         id: 1,
         text: "meal prep",
-        status: "incomplete"
+        status: "incomplete",
+        creation: Date().substring(0, 15)
       },
       {
         id: 3,
         text: "code",
-        status: "incomplete"
+        status: "incomplete",
+        creation: Date().substring(0, 15)
       }
     ]
 
@@ -126,4 +143,45 @@ describe("TodoList", () => {
     expect(result).toEqual(expected)
   })
 
+  it('search todo items by day and return them in a list', () => {
+    const expected = [
+      {
+        id: 1,
+        text: "clean windows",
+        status: "incomplete",
+        creation: Date().substring(0, 15)
+      },
+      {
+        id: 2,
+        text: "code",
+        status: "incomplete",
+        creation: Date().substring(0, 15)
+      },
+      {
+        id: 3,
+        text: "pay insurance",
+        status: "incomplete",
+        creation: Date().substring(0, 15)
+      },
+      {
+        id: 4,
+        text: "update documents",
+        status: "incomplete",
+        creation: Date().substring(0, 15)
+      },
+      {
+        id: 5,
+        text: "food shopping",
+        status: "incomplete",
+        creation: Date().substring(0, 15)
+      }
+    ]
+    todoList.createItem('clean windows')
+    todoList.createItem('code')
+    todoList.createItem('pay insurance')
+    todoList.createItem('update documents')
+    todoList.createItem('food shopping')
+    const result = todoList.searchItemByDay(2)
+    expect(result).toEqual(expected)
+  })
 })
