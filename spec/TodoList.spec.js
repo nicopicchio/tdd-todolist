@@ -18,18 +18,17 @@ describe("TodoList", () => {
   })
 
   it("get all todo items", () => {
-    const expected = [
-    {
-      id: 1,
-      text: "turn the heating on!",
-      status: "incomplete"
-    },
-    {
-      id: 2,
-      text: "meal prep",
-      status: "incomplete"
-    }
-  ]
+    const expected = [{
+        id: 1,
+        text: "turn the heating on!",
+        status: "incomplete"
+      },
+      {
+        id: 2,
+        text: "meal prep",
+        status: "incomplete"
+      }
+    ]
     todoList.createItem('turn the heating on!')
     todoList.createItem('meal prep')
     const result = todoList.fetchFullList()
@@ -37,8 +36,7 @@ describe("TodoList", () => {
   })
 
   it("set a todo completed by its ID", () => {
-    const expected = [
-      {
+    const expected = [{
         id: 1,
         text: "turn the heating on!",
         status: "complete"
@@ -56,8 +54,7 @@ describe("TodoList", () => {
   })
 
   it("return only incomplete todos", () => {
-    const expected = [
-      {
+    const expected = [{
         id: 1,
         text: "meal prep",
         status: "incomplete"
@@ -77,18 +74,55 @@ describe("TodoList", () => {
   })
 
   it("return only complete todos", () => {
-    const expected = [
-      {
-        id: 3,
-        text: "code",
-        status: "complete"
-      }
-    ]
+    const expected = [{
+      id: 3,
+      text: "code",
+      status: "complete"
+    }]
     todoList.createItem('meal prep')
     todoList.createItem('play piano')
     todoList.createItem('code')
     todoList.setCompletedByID(3)
     const result = todoList.returnComplete()
+    expect(result).toEqual(expected)
+  })
+
+  it('search and return a todo item by ID or return error message', () => {
+    const expected = {
+      id: 1,
+      text: "drink more water",
+      status: "incomplete"
+    }
+    todoList.createItem('drink more water')
+    const result = todoList.searchAndReturnByID(1)
+    expect(result).toEqual(expected)
+  })
+
+  it('search and return a todo item by ID or return error message', () => {
+    const expected = 'The item was not found!'
+    todoList.createItem('drink more water')
+    const result = todoList.searchAndReturnByID(2)
+    expect(result).toEqual(expected)
+  })
+
+  it("remove a todo item by its ID", () => {
+    const expected = [
+      {
+        id: 1,
+        text: "meal prep",
+        status: "incomplete"
+      },
+      {
+        id: 3,
+        text: "code",
+        status: "incomplete"
+      }
+    ]
+
+    todoList.createItem('meal prep')
+    todoList.createItem('play piano')
+    todoList.createItem('code')
+    const result = todoList.removeTodoItemByID(2)
     expect(result).toEqual(expected)
   })
 
