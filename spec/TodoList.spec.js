@@ -1,11 +1,5 @@
 const TodoList = require("../src/TodoList.js")
 
-// const currentDate = new Date().substring(0, 15)
-
-const daysOfTheWeek = {
-  
-}
-
 describe("TodoList", () => {
   let todoList
 
@@ -181,7 +175,15 @@ describe("TodoList", () => {
     todoList.createItem('pay insurance')
     todoList.createItem('update documents')
     todoList.createItem('food shopping')
-    const result = todoList.searchItemByDay(2)
+    const result = todoList.searchItemByDay('Wed')
+    expect(result).toEqual(expected)
+  })
+
+  it('search todo items by day and return them in a list', () => {
+    const expected = []
+    todoList.createItem('clean windows')
+    todoList.createItem('code')
+    const result = todoList.searchItemByDay('Mon')
     expect(result).toEqual(expected)
   })
 })

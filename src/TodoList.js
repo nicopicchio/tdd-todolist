@@ -1,15 +1,6 @@
 class TodoList {
   constructor() {
     this.todoList = [];
-    this.daysOfTheWeek = {
-      0: 'Sun',
-      1: 'Mon',
-      2: 'Tue',
-      3: 'Wed',
-      4: 'Thu',
-      5: 'Fri',
-      6: 'Sat',
-    }
   }
 
   createItem(text) {
@@ -70,10 +61,10 @@ class TodoList {
     return this.todoList
   }
 
-  searchItemByDay(day) {
+  searchItemByDay(dayString) {
     const dayArray = []
     for (let i = 0; i < this.todoList.length; i++) {
-      if (this.todoList[i].creation.includes(day)) {
+      if (this.todoList[i].creation.includes(dayString)) {
         dayArray.push(this.todoList[i])
       }
     }
